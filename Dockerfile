@@ -4,7 +4,7 @@ WORKDIR /simple-java-maven-app
 
 COPY src /usr/src/app/src 
 
-COPY pom.xml /tmp/pom.xml
+#COPY pom.xml /tmp/pom.xml
 
 RUN mvn clean package
 
