@@ -24,7 +24,7 @@ pipeline {
                 sh 'docker login -u shahadsha -p ${dockerva}'  
                 sh 'docker push shahadsha/pipelinetester:${BUILD_NUMBER}'
                 sh 'docker logout'
-}
+                }
             }
         }
     }
