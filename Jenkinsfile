@@ -39,7 +39,7 @@ pipeline {
         stage("Cleaning Docker Images") {
             steps {
                 script {
-                    sh "sudo docker system prune -a"
+                    sh "docker stop $(docker ps -aq) && docker rm $(docker ps -aq) && docker rmi $(docker images -q)"
                     
                 }
             }
