@@ -14,7 +14,8 @@ pipeline {
         stage("build docker image") {
             steps {
                 script {
-                    sh 'docker build -t shahadsha/pipelinetester:${BUILD_NUMBER} .'
+                    dockerImage = docker.build "HEllo:${BUILD_NUMBER}"
+                    //sh 'docker build -t shahadsha/pipelinetester:${BUILD_NUMBER} .'
                 }
             }
         }
