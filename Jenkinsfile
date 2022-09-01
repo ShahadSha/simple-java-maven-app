@@ -23,14 +23,14 @@ pipeline {
         stage("AWS ECR Login") {
             steps {
                 script {
-                    sh 'aws ecr get-login-password --region us-east-2 | docker login --username AWS --password-stdin 804669271496.dkr.ecr.us-east-2.amazonaws.com'
+                    sh 'aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 804669271496.dkr.ecr.us-east-2.amazonaws.com'
                 }
             }
         }
         stage("AWS ECR Push") {
             steps {
                 script {
-                    sh 'docker tag maven-docker:${BUILD_NUMBER} public.ecr.aws/x3x3m9h6/maven-docker:latest'
+                    sh 'docker tag maven-docker:latest public.ecr.aws/x3x3m9h6/maven-docker:${BUILD_NUMBER}'
                     sh 'docker push public.ecr.aws/x3x3m9h6/maven-docker:${BUILD_NUMBER}'
 
                     
