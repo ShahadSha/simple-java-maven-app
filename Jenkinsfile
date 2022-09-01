@@ -18,7 +18,7 @@ pipeline {
             steps {
                 script {
                      dockerImage = docker.build registry
-                    //sh 'docker build -t shahadsha/pipelinetester:${BUILD_NUMBER} .'
+                    
                 }
             }
         }
