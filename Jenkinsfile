@@ -13,7 +13,6 @@ pipeline {
                 sh "mvn -Dmaven.test.failure.ignore=true clean package"
             }
         }
-        
         stage("build docker image") {
             steps {
                 script {
@@ -21,8 +20,6 @@ pipeline {
                 }
             }
         }
-
-        // login to aws ECR
         stage("AWS ECR Login") {
             steps {
                 script {
@@ -30,9 +27,6 @@ pipeline {
                 }
             }
         }
-
-        
-
         stage("AWS ECR Push") {
             steps {
                 script {
@@ -42,16 +36,5 @@ pipeline {
             }
         }
 
-        stage("push to docker hub") {
-            steps {
-                withCredentials([
-                    string(credentialsId: 'dockerusername', variable: 'dockerusr'),
-                    string(credentialsId: 'shahadshaa', variable: 'dockerva')]) {
-                        sh 'docker login -u ${dockerusr} -p ${dockerva}'  
-                        sh 'docker push shahadsha/pipelinetester:${BUILD_NUMBER}'
-                        sh 'docker logout'
-                        }
-            }
-        }
     }
 }
