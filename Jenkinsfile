@@ -1,7 +1,7 @@
 pipeline {
     agent any 
     environment {
-        registry = "acct_id.dkr.ecr.us-east-2.amazonaws.com/your_ecr_repo"
+        registry = "acct_id.dkr.ecr.us-east-2.amazonaws.com/maven-docker"
     }
     tools {
         maven 'MAVEN_HOME'
@@ -26,7 +26,7 @@ pipeline {
         stage("AWS ECR Login") {
             steps {
                 script {
-                    sh 'aws ecr get-login-password --region us-east-2 | docker login --username AWS --password-stdin 804669271496..dkr.ecr.us-east-2.amazonaws.com'
+                    sh 'aws ecr get-login-password --region us-east-2 | docker login --username AWS --password-stdin 804669271496.dkr.ecr.us-east-2.amazonaws.com'
                 }
             }
         }
