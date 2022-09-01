@@ -36,5 +36,13 @@ pipeline {
             }
         }
 
+        stage("Cleaning Docker Images") {
+            steps {
+                script {
+                    sh "sudo docker system prune -a"
+                    
+                }
+            }
+        }
     }
 }
