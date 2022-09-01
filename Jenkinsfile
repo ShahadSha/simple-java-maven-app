@@ -35,11 +35,5 @@ pipeline {
                 }
             }
         }
-        stage('Cleaning up') { 
-            steps {
-                sh "docker rmi maven-docker:$BUILD_NUMBER" 
-            }
-
-        } 
     }
 }
