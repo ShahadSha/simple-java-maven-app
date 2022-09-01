@@ -14,14 +14,6 @@ pipeline {
             }
         }
         
-        stage("build docker image") {
-            steps {
-                script {
-                     dockerImage = docker.build registry
-                    
-                }
-            }
-        }
         // login to aws ECR
         stage("AWS ECR Login") {
             steps {
@@ -30,6 +22,15 @@ pipeline {
                 }
             }
         }
+
+        stage("build docker image") {
+            steps {
+                script {
+                     dockerImage = docker.build registry
+                }
+            }
+        }
+        
         stage("AWS ECR Push") {
             steps {
                 script {
