@@ -17,7 +17,7 @@ pipeline {
         stage("build docker image") {
             steps {
                 script {
-                    docker build -t maven-docker .
+                    sh 'docker build -t maven-docker .'
                 }
             }
         }
