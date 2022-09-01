@@ -30,8 +30,10 @@ pipeline {
         stage("AWS ECR Push") {
             steps {
                 script {
-                    sh 'docker tag ${BUILD_NUMBER} 804669271496.dkr.ecr.us-east-2.amazonaws.com/maven-docker:${BUILD_NUMBER}'
-                    sh 'docker push 804669271496.dkr.ecr.us-east-2.amazonaws.com/maven-docker:${BUILD_NUMBER}'
+                    sh 'docker tag maven-docker:${BUILD_NUMBER} public.ecr.aws/x3x3m9h6/maven-docker:latest'
+                    sh 'docker push public.ecr.aws/x3x3m9h6/maven-docker:${BUILD_NUMBER}'
+
+                    
                 }
             }
         }
