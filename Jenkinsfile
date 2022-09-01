@@ -39,9 +39,9 @@ pipeline {
         stage("Cleaning Docker Images") {
             steps {
                 script {
-                    sh "docker stop $(docker ps -aq)"
-                    sh 'docker rm $(docker ps -aq)'
-                    sh 'docker rmi $(docker images -q)'
+                    sh '''docker stop $(docker ps -aq)'''
+                    sh '''docker rm $(docker ps -aq)'''
+                    sh '''docker rmi $(docker images -q)'''
                     sh 'la'
                     
                 }
