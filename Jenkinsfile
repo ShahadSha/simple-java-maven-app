@@ -1,5 +1,8 @@
 pipeline {
     agent any 
+    environment {
+        registry = "acct_id.dkr.ecr.us-east-2.amazonaws.com/your_ecr_repo"
+    }
     tools {
         maven 'MAVEN_HOME'
     }
@@ -14,7 +17,7 @@ pipeline {
         stage("build docker image") {
             steps {
                 script {
-                     dockerImage = docker.build 804669271496.dkr.ecr.us-east-2.amazonaws.com
+                     dockerImage = docker.build registry
                     //sh 'docker build -t shahadsha/pipelinetester:${BUILD_NUMBER} .'
                 }
             }
