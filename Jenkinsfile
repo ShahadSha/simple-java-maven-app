@@ -17,7 +17,7 @@ pipeline {
         stage("build docker image") {
             steps {
                 script {
-                     dockerImage = docker.build registry
+                    docker build -t maven-docker .
                 }
             }
         }
