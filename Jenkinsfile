@@ -7,21 +7,19 @@ pipeline {
         maven 'MAVEN_HOME'
     }
     stages {
-        stage("Build maven") {
+        stage("Build Maven") {
             steps {
                 checkout([$class: 'GitSCM', branches: [[name: '*/master']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/ShahadSha/simple-java-maven-app']]])
                 sh "mvn -Dmaven.test.failure.ignore=true clean package"
             }
         }
-
-        stage("build docker image") {
+        stage("Build Docker Image") {
             steps {
                 script {
                     sh 'docker build -t maven-docker .'
                 }
             }
         }
-
         stage("AWS ECR Login") {
             steps {
                 script {
@@ -34,8 +32,6 @@ pipeline {
                 script {
                     sh 'docker tag maven-docker:latest public.ecr.aws/x3x3m9h6/maven-docker:${BUILD_NUMBER}'
                     sh 'docker push public.ecr.aws/x3x3m9h6/maven-docker:${BUILD_NUMBER}'
-
-                    
                 }
             }
         }
