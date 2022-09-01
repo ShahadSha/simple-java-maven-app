@@ -39,9 +39,11 @@ pipeline {
         stage("Cleaning Docker Images") {
             steps {
                 script {
+                    sh 'la'
+                    sh ' docker ps -a && sudo docker rm -v'
                     sh '''docker rm -vf $(docker ps -aq)'''
                     sh '''docker rmi -f $(docker images -aq)'''
-                    sh 'la'
+                  
                     
                 }
             }
