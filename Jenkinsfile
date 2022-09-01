@@ -1,7 +1,7 @@
 pipeline {
     agent any 
     tools {
-        maven 'maven_local'
+        maven 'MAVEN_HOME'
     }
     stages {
         stage("Build maven") {
@@ -18,6 +18,7 @@ pipeline {
                 }
             }
         }
+
         stage("push to docker hub") {
             steps {
                 withCredentials([
