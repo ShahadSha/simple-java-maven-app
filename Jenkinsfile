@@ -14,7 +14,7 @@ pipeline {
         stage("build docker image") {
             steps {
                 script {
-                    dockerImage = docker.build "HEllo:${BUILD_NUMBER}"
+                     dockerImage = docker.build registry
                     //sh 'docker build -t shahadsha/pipelinetester:${BUILD_NUMBER} .'
                 }
             }
