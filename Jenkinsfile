@@ -42,7 +42,17 @@ pipeline {
 
         stage("pushing") {
             steps {
+                sh 'cat <<EOF > Chart.yaml'
+                sh '''apiVersion: v2
+                        name: java-helm
+                        description: A Helm chart for Kubernetes
+                        type: application
+                        version: ${BUILD_NUMBER}
+                        appVersion: "1.16.0"
+                    '''
+                sh 'EOF'
                 sh 'helm package java-helm'
+                
                 sh 'aws ecr get-login-password --region us-east-1 | helm registry login --username AWS --password-stdin 804669271496.dkr.ecr.us-east-1.amazonaws.com'
                 sh 'helm push java-helm-0.1.0.tgz oci://public.ecr.aws/x3x3m9h6/'
                 sh 'aws ecr-public describe-images --repository-name java-helm --region us-east-1'
