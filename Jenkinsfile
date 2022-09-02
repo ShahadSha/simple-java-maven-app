@@ -48,7 +48,7 @@ pipeline {
         stage ('Invoke_pipeline') {
             steps {
                 build job: 'Pipeline-B', parameters: [
-                string(name: 'buildnumber', value: "${BUILD_NUMBER")
+                string(name: 'buildnumber', value: "${BUILD_NUMBER}")
                 ]
             }
         }
