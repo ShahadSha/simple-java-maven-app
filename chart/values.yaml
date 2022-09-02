@@ -1,0 +1,15 @@
+greeting:
+  image: <aws_account_id>.dkr.ecr.<aws_region>.amazonaws.com/nodejs-hello-world
+  imagePullPolicy: Always
+  replicaCount: 1
+
+image:
+  tag: latest
+  pullPolicy: IfNotPresent
+
+service:
+  type: LoadBalancer
+  externalPort: 80
+  internalPort: 8080
+  externalDebugPort: 5005
+  internalDebugPort: 5005
