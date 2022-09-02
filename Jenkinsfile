@@ -40,15 +40,17 @@ pipeline {
             }
         }
 
-        stage("pushing") {
-            steps {
-                sh 'cd java-helm'
-                def datas = readYaml file:"Chart.yml"
+        stage("Editing YAML version") {
+            steps { 
+                def datas = readYaml file:"java-helm/Chart.yml"
                 datas = ['version': '${BUILD_NUMBER']
-                writeYaml file:"Chart.yaml", data: datas
-                sh 'cd..'
-                sh 'helm package java-helm'
+                writeYaml file:"java-helm/Chart.yaml", data: datas
+            }
+        }
 
+        stage("pushing") {
+            steps {  
+                sh 'helm package java-helm'
                 sh 'aws ecr get-login-password --region us-east-1 | helm registry login --username AWS --password-stdin 804669271496.dkr.ecr.us-east-1.amazonaws.com'
                 sh 'helm push java-helm-0.1.0.tgz oci://public.ecr.aws/x3x3m9h6/'
                 sh 'aws ecr-public describe-images --repository-name java-helm --region us-east-1'
