@@ -36,7 +36,7 @@ pipeline {
 
         stage("pushing") {
             steps {
-                sh "echo version := 1.0.${BUILD_NUMBER} >> java-helm/Chart.yaml"
+                sh "echo version : 1.0.${BUILD_NUMBER} >> java-helm/Chart.yaml"
                 sh 'helm package java-helm'
                 sh 'aws ecr get-login-password --region us-east-1 | helm registry login --username AWS --password-stdin 804669271496.dkr.ecr.us-east-1.amazonaws.com'
                 sh 'helm push java-helm-0.1.0.tgz oci://public.ecr.aws/x3x3m9h6/'
