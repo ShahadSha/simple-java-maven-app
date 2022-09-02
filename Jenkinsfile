@@ -33,17 +33,10 @@ pipeline {
                 }
             }
         }
-
-        stage("cloning Repo again") {
-            steps {
-                checkout([$class: 'GitSCM', branches: [[name: '*/master']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/ShahadSha/simple-java-maven-app']]])
-            }
-        }
-
         stage("Editing YAML version") {
             steps { 
                 script {
-                    def datas = readYaml file:"java-helm/Chart.yml"
+                    def datas = readYaml file:"java-helm/Chart.yaml"
                     datas = ['version': '${BUILD_NUMBER']
                     writeYaml file:"java-helm/Chart.yaml", data: datas
                 }
