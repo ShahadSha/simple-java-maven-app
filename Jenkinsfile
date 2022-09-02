@@ -37,6 +37,11 @@ pipeline {
             steps {
                 script {
                     def datas = readYaml file:"java-helm/Chart.yaml"
+                    sh '''
+                        if [ -e java-helm/Chart.yaml ]; then
+                            rm -f java-helm/Chart.yaml
+                        fi
+                    '''
                     datas = ['version': '${BUILD_NUMBER']
                     writeYaml file:"java-helm/Chart.yaml", data: datas
                 }
