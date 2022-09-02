@@ -35,8 +35,8 @@ pipeline {
         }
         stage("Editing YAML version") {
             steps {
-                buildnumber = ${BUILD_NUMBER}
                 script {
+                    def buildNumber = currentBuild.number
                     def datas = readYaml file:"java-helm/Chart.yaml"
                     sh '''
                         if [ -e java-helm/Chart.yaml ]; then
