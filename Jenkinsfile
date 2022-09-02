@@ -46,7 +46,7 @@ pipeline {
             steps {
                 sh 'helm package java-helm'
                 sh 'aws ecr-public get-login-password --region us-east-2 | helm registry login --username AWS --password-stdin public.ecr.aws'
-                sh 'helm push java-helm-${BUILD_NUMBER} oci://public.ecr.aws/x3x3m9h6/java-helm'
+                sh 'helm push java-helm oci://public.ecr.aws/x3x3m9h6/java-helm'
                 sh 'aws ecr-public describe-images --repository-name java-helm --region us-east-2'
             }
         }
