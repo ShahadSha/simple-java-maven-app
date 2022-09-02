@@ -35,6 +35,7 @@ pipeline {
         }
         stage("Editing YAML version") {
             steps {
+                buildnumber = ${BUILD_NUMBER}
                 script {
                     def datas = readYaml file:"java-helm/Chart.yaml"
                     sh '''
@@ -42,7 +43,7 @@ pipeline {
                             rm -f java-helm/Chart.yaml
                         fi
                     '''
-                    buildnumber = ${BUILD_NUMBER}
+                    
                     datas = [
                         'apiVersion':'v2',
                         'name':'java-helm',
