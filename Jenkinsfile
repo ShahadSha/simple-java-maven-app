@@ -36,7 +36,7 @@ pipeline {
         stage("Editing YAML version") {
             steps {
                 script {
-
+                    def datas = readYaml file:"java-helm/Chart.yaml"
                     datas = ['version': '${BUILD_NUMBER']
                     writeYaml file:"java-helm/Chart.yaml", data: datas
                 }
