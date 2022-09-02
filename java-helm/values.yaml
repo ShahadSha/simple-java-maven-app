@@ -2,8 +2,8 @@
 # Declare variables to be passed into deployment_helloworld.yaml in templates directory.
 
 image:
-  ECRLink: NULL
-  repository: NULL
+  ECRLink: public.ecr.aws/x3x3m9h6
+  repository: java-helm
   tag: NULL
   pullPolicy: IfNotPresent
 
