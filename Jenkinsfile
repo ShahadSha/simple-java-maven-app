@@ -45,7 +45,7 @@ pipeline {
                     datas = [
                         'apiVersion':'v2',
                         'name':'java-helm',
-                        'description':'ok'
+                        'description':'ok',
                         'type':'application',
                         'version': '${BUILD_NUMBER}',
                         'appVersion':'"1.16.0"',
