@@ -1,8 +1,6 @@
 pipeline {
     agent any 
-    environment {
-        registry = "804669271496.dkr.ecr.us-east-2.amazonaws.com/maven-docker"
-    }
+    
     tools {
         maven 'MAVEN_HOME'
     }
