@@ -38,7 +38,7 @@ pipeline {
 
         stage("cloning Repo again") {
             steps {
-                sh 'git pull'
+                checkout([$class: 'GitSCM', branches: [[name: '*/master']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/ShahadSha/simple-java-maven-app']]])
             }
         }
 
