@@ -41,6 +41,7 @@ pipeline {
                 sh 'aws ecr get-login-password --region us-east-1 | helm registry login --username AWS --password-stdin 804669271496.dkr.ecr.us-east-1.amazonaws.com'
                 sh 'helm push java-helm-1.${BUILD_NUMBER}.1.tgz oci://public.ecr.aws/x3x3m9h6/'
                 sh 'aws ecr-public describe-images --repository-name java-helm --region us-east-1'
+                sh 'sudo rm -rf java-helm-*'
             }
         }
     }
