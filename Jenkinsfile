@@ -33,32 +33,10 @@ pipeline {
                 }
             }
         }
-        stage("Editing YAML version") {
-            steps {
-                script {
-                    def buildNumber = currentBuild.number
-                    def datas = readYaml file:"java-helm/Chart.yaml"
-                    sh '''
-                        if [ -e java-helm/Chart.yaml ]; then
-                            rm -f java-helm/Chart.yaml
-                        fi
-                    '''
-                    
-                    datas = [
-                        'apiVersion':'v2',
-                        'name':'java-helm',
-                        'description':'ok',
-                        'type':'application',
-                        'version': buildnumber,
-                        'appVersion':'"1.16.0"',
-                        ]
-                    writeYaml file:"java-helm/Chart.yaml", data: datas
-                }
-            }
-        }
 
         stage("pushing") {
-            steps {  
+            steps {
+                sh "echo version := 1.0.${BUILD_NUMBER} >> java-helm/Chart.yaml"
                 sh 'helm package java-helm'
                 sh 'aws ecr get-login-password --region us-east-1 | helm registry login --username AWS --password-stdin 804669271496.dkr.ecr.us-east-1.amazonaws.com'
                 sh 'helm push java-helm-0.1.0.tgz oci://public.ecr.aws/x3x3m9h6/'

@@ -7,8 +7,6 @@ image:
   tag: NULL
   pullPolicy: IfNotPresent
 
-verison: NULL
-
 args: []
 
 resources: {}
