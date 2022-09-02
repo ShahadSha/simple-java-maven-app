@@ -47,7 +47,7 @@ pipeline {
                         'name':'java-helm',
                         'description':'ok',
                         'type':'application',
-                        'version': '${BUILD_NUMBER}',
+                        'version': ${BUILD_NUMBER},
                         'appVersion':'"1.16.0"',
                         ]
                     writeYaml file:"java-helm/Chart.yaml", data: datas
