@@ -42,12 +42,13 @@ pipeline {
                             rm -f java-helm/Chart.yaml
                         fi
                     '''
+                    buildnumber = ${BUILD_NUMBER}
                     datas = [
                         'apiVersion':'v2',
                         'name':'java-helm',
                         'description':'ok',
                         'type':'application',
-                        'version': ''${BUILD_NUMBER}'',
+                        'version': 'buildnumber',
                         'appVersion':'"1.16.0"',
                         ]
                     writeYaml file:"java-helm/Chart.yaml", data: datas
