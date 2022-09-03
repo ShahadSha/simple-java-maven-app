@@ -12,7 +12,7 @@ pipeline {
             }
         }
 
-        stage{
+        stage("Trigger Pipeline B"){
             script {
                 // Trigger another pipeline and check result of this
                 ret = build(job: 'Pipeline-B', 
@@ -24,7 +24,7 @@ pipeline {
                 currentBuild.result = ret.result
             }
         }
-        
+
         stage("Build Docker Image") {
             steps {
                 script {
