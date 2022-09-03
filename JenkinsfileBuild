@@ -10,8 +10,8 @@ pipeline {
             steps {
                 script {
                     echo "${params.BUILD_NU}"
-
-                    sdsdfdsf
+                    echo env.BUILD_NUMBER
+                    
                 }
             }
         }
