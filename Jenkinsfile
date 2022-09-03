@@ -11,6 +11,20 @@ pipeline {
                 sh "mvn -Dmaven.test.failure.ignore=true clean package"
             }
         }
+
+        stage{
+            script {
+                // Trigger another pipeline and check result of this
+                ret = build(job: 'Pipeline-B', 
+                            parameters: [ string(name: 'BUILD_NUMBER', value: "value1")],
+                            propagate: true,
+                            wait: true)
+
+                echo ret.result
+                currentBuild.result = ret.result
+            }
+        }
+        
         stage("Build Docker Image") {
             steps {
                 script {
@@ -42,5 +56,7 @@ pipeline {
                 sh 'rm -rf java-helm-*'
             }
         }
+
+        
     }
 }

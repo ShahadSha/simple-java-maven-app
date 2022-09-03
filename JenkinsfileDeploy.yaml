@@ -1,0 +1,19 @@
+pipeline {
+    agent any 
+    
+    tools {
+        maven 'MAVEN_HOME'
+    }
+    stages {
+        
+        stage("Build Docker Image") {
+            steps {
+                script {
+                    echo haikkkkkkkkkkkkkkkkkkkkkkkkkkkk
+                }
+               
+            }
+        }
+        
+    }
+}
