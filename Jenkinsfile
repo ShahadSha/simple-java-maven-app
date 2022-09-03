@@ -16,7 +16,6 @@ pipeline {
             steps {
                 script {
                     build job: "Pipeline-B", parameters: [string(name: "BUILD_NU", value: '${BUILD_NUMBER}')]
-
                 }
             }
         }
