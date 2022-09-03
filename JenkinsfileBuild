@@ -5,14 +5,8 @@ pipeline {
         maven 'MAVEN_HOME'
     }
     stages {
-        
-        stage("Build Docker Image") {
-            steps {
-                script {
-                    echo "${params.BUILD_NU}"
-                    echo env.BUILD_NUMBER
-                    
-                }
+        stage("Pull ECR Helm Chart") {
+            sh 'helm pull oci://public.ecr.aws/x3x3m9h6/java-helm --version 1.${params.buildnum}.1  --untar'
             }
         }
         
