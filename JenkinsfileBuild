@@ -1,8 +1,8 @@
 pipeline {
     agent any 
-    
+
     environment {
-        chart-id = '${params.buildnum}'
+        chart_id = '${params.buildnum}'
     }
 
     stages {
@@ -10,7 +10,7 @@ pipeline {
             steps {
 
                 sh 'aws ecr-public get-login-password --region us-east-1 | helm registry login --username AWS --password-stdin public.ecr.aws'
-                sh '''helm pull oci://public.ecr.aws/x3x3m9h6/java-helm --version 1.${chart-id}.1  --untar'''
+                sh '''helm pull oci://public.ecr.aws/x3x3m9h6/java-helm --version 1.${chart_id}.1  --untar'''
             }
         } 
     }
