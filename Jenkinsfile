@@ -39,6 +39,7 @@ pipeline {
                 sh "echo version : 1.${BUILD_NUMBER}.1 >> java-helm/Chart.yaml"
                 sh 'helm package java-helm'
                 sh 'aws ecr-public get-login-password --region us-east-1 | docker login --username AWS --password-stdin public.ecr.aws/x3x3m9h6'
+                sh 'aws ecr get-login-password'
                 sh 'helm push java-helm-1.${BUILD_NUMBER}.1.tgz oci://public.ecr.aws/x3x3m9h6/'
                 sh 'aws ecr-public describe-images --repository-name java-helm --region us-east-1'
                 sh 'rm -rf java-helm-*'
