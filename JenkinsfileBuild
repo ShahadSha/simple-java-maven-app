@@ -8,11 +8,9 @@ pipeline {
         
         stage("Build Docker Image") {
             steps {
-                sh 'echo ${BUILD_NUMBER}'
                 script {
-                    echo 'BUILD_NU'
+                    echo "${params.BUILD_NU}"
                 }
-               
             }
         }
         
