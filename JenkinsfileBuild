@@ -1,8 +1,6 @@
 pipeline {
     agent any 
     
-    }
-
     environment {
         chart-id = '${params.buildnum}'
     }
