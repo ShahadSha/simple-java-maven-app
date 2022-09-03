@@ -15,13 +15,8 @@ pipeline {
         stage("Trigger Pipeline B") {
             steps {
                 script {
-                    ret = build(job: 'Pipeline-B', 
-                                parameters: [ string(name: 'BUILD_NU', value: "value1")],
-                                propagate: true,
-                                wait: true)
+                    build job: "Pipeline-B", parameters: [string(name: "BUILD_NU", value: '${BUILD_NUMBER}')]
 
-                    echo ret.result
-                    currentBuild.result = ret.result
                 }
             }
         }
