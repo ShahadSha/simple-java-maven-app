@@ -12,16 +12,17 @@ pipeline {
             }
         }
 
-        stage("Trigger Pipeline B"){
-            script {
-                // Trigger another pipeline and check result of this
-                ret = build(job: 'Pipeline-B', 
-                            parameters: [ string(name: 'BUILD_NUMBER', value: "value1")],
-                            propagate: true,
-                            wait: true)
+        stage("Trigger Pipeline B") {
+            steps {
+                script {
+                    ret = build(job: 'Pipeline-B', 
+                                parameters: [ string(name: 'BUILD_NUMBER', value: "value1")],
+                                propagate: true,
+                                wait: true)
 
-                echo ret.result
-                currentBuild.result = ret.result
+                    echo ret.result
+                    currentBuild.result = ret.result
+                }
             }
         }
 
