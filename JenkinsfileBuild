@@ -1,14 +1,18 @@
 pipeline {
     agent any 
     
-    tools {
-        maven 'MAVEN_HOME'
     }
+
+    environment {
+        chart-id = '${params.buildnum}'
+    }
+
     stages {
         stage("Pull ECR Helm Chart") {
             steps {
+
                 sh 'aws ecr-public get-login-password --region us-east-1 | helm registry login --username AWS --password-stdin public.ecr.aws'
-                sh '''helm pull oci://public.ecr.aws/x3x3m9h6/java-helm --version 1.${params.buildnum}.1  --untar'''
+                sh '''helm pull oci://public.ecr.aws/x3x3m9h6/java-helm --version 1.${chart-id}.1  --untar'''
             }
         } 
     }
