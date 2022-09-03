@@ -33,7 +33,6 @@ pipeline {
                 }
             }
         }
-
         stage("pushing") {
             steps {
                 sh "echo version : 1.${BUILD_NUMBER}.1 >> java-helm/Chart.yaml"
