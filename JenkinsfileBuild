@@ -2,7 +2,7 @@ pipeline {
     agent any 
 
     environment {
-        chart_id = '${params.buildnum}'
+        chart_id = ${params.buildnum}
     }
 
     stages {
