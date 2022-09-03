@@ -7,7 +7,6 @@ pipeline {
                 checkout([$class: 'GitSCM', branches: [[name: '*/master']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/ShahadSha/simple-java-maven-app']]])
                 sh 'aws ecr-public get-login-password --region us-east-1 | helm registry login --username AWS --password-stdin public.ecr.aws'
                 sh '''helm pull oci://public.ecr.aws/x3x3m9h6/java-helm --version 1.${params.buildnum}.1  --untar'''
-                sh 'echo "${params.buildnum}"'
             }
         }
     }
