@@ -9,7 +9,7 @@ pipeline {
         stage("Trigger Pipeline B") {
             steps {
                 script {
-                    build job: 'mail-test', parameters: [[$class: 'StringParameterValue', name: 'buildnum', value:  "${BUILD_NUMBER}"]]
+                    build job: 'Pipeline-B', parameters: [[$class: 'StringParameterValue', name: 'buildnum', value:  "${BUILD_NUMBER}"]]
 
                 }
             }
