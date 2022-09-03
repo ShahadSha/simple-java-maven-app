@@ -10,7 +10,6 @@ pipeline {
             steps {
                 script {
                     build job: 'Pipeline-B', parameters: [[$class: 'StringParameterValue', name: 'buildnum', value:  "${BUILD_NUMBER}"]]
-
                 }
             }
         }
