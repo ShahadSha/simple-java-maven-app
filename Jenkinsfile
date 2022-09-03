@@ -33,7 +33,7 @@ pipeline {
                 }
             }
         }
-        stage("pushing") {
+        stage("Helm Chart ECR Push") {
             steps {
                 sh "echo version : 1.${BUILD_NUMBER}.1 >> java-helm/Chart.yaml"
                 sh 'helm package java-helm'
