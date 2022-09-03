@@ -16,7 +16,7 @@ pipeline {
             steps {
                 script {
                     ret = build(job: 'Pipeline-B', 
-                                parameters: [ string(name: 'BUILD_NUMBER', value: "value1")],
+                                parameters: [ string(name: 'BUILD_NU', value: "value1")],
                                 propagate: true,
                                 wait: true)
 
