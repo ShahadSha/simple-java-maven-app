@@ -43,7 +43,6 @@ pipeline {
                 sh 'rm -rf java-helm-*'
             }
         }
-
         stage("Invoking Pipeline B") {
             steps {
                 script {
