@@ -5,15 +5,6 @@ pipeline {
         maven 'MAVEN_HOME'
     }
     stages {
-
-        stage("Trigger Pipeline B") {
-            steps {
-                script {
-                    build job: 'Pipeline-B', parameters: [[$class: 'StringParameterValue', name: 'buildnum', value:  "${BUILD_NUMBER}"]]
-                }
-            }
-        }
-
         stage("Build Maven") {
             steps {
                 checkout([$class: 'GitSCM', branches: [[name: '*/master']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/ShahadSha/simple-java-maven-app']]])
@@ -50,6 +41,14 @@ pipeline {
                 sh 'aws ecr-public get-login-password --region us-east-1 | helm registry login --username AWS --password-stdin public.ecr.aws'
                 sh 'helm push java-helm-1.${BUILD_NUMBER}.1.tgz oci://public.ecr.aws/x3x3m9h6/'
                 sh 'rm -rf java-helm-*'
+            }
+        }
+
+        stage("Invoking Pipeline B") {
+            steps {
+                script {
+                    build job: 'Pipeline-B', parameters: [[$class: 'StringParameterValue', name: 'buildnum', value:  "${BUILD_NUMBER}"]]
+                }
             }
         }
 
