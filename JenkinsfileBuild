@@ -10,7 +10,7 @@ pipeline {
             steps {
                 sh 'echo ${BUILD_NUMBER}'
                 script {
-                    echo BUILD_NU
+                    echo 'BUILD_NU'
                 }
                
             }
