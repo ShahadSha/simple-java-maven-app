@@ -8,9 +8,10 @@ pipeline {
 
         stage("Trigger Pipeline B") {
             steps {
+                buildnumber = ${BUILD_NUMBER}
                 script {
                     
-                    build job: "Pipeline-B", parameters: [string(name: "BUILD_NU", value: '${BUILD_NUMBERss}')]
+                    build job: "Pipeline-B", parameters: [string(name: "BUILD_NU", value: ${BUILD_NUMBERss})]
                 }
             }
         }
