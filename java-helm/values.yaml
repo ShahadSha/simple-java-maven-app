@@ -3,8 +3,8 @@
 
 image:
   ECRLink: public.ecr.aws/x3x3m9h6
-  repository: java-helm
-  tag: NULL
+  repository: maven-docker
+  tag: 154
   pullPolicy: IfNotPresent
 
 args: []

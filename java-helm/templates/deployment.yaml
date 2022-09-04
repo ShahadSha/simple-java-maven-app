@@ -1,24 +1,23 @@
-apiVersion: extensions/v1beta1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: 
+  name: java-helm
 spec:
   replicas: 1
-  strategy:
-    rollingUpdate:
-      maxSurge: 1
-      maxUnavailable: 1
-    type: RollingUpdate
+  selector:
+    matchLabels:
+      app: java-helm
   template:
     metadata:
       labels:
-        app: helloworld.app
-        tier: backend
+        app: java-helm
     spec:
       containers:
-        - name: helloworld
-          image: {{.Values.image.ECRLink}}/{{ .Values.image.repository }}:{{ .Values.image.tag }}
-          workingDir: /home/
-          command: ["/bin/sh"]
-          args: ["./startup.sh"]
-      restartPolicy: Always
+      - name: java-helm
+        image: {{.Values.image.ECRLink}}/{{ .Values.image.repository }}:{{ .Values.image.tag }}
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 8080
+          name: "http"
+        - containerPort: 5005
+          name: "debug"
