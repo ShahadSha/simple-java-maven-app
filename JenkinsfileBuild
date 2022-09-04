@@ -6,10 +6,16 @@ pipeline {
     stages {
         stage("Pull ECR Helm Chart") {
             steps {
-                checkout([$class: 'GitSCM', branches: [[name: '*/master']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/ShahadSha/simple-java-maven-app']]])
                 sh 'rm -rf java-helm'
                 sh 'aws ecr-public get-login-password --region us-east-1 | helm registry login --username AWS --password-stdin public.ecr.aws'
                 sh "helm pull oci://public.ecr.aws/x3x3m9h6/java-helm --version 1.${params.buildnum}.1  --untar"
+            }
+        }
+
+        stage("Deploy To kubernetes") {
+            steps {
+                sh 'helm install java-helm java-helm'
+                sh 'helm upgrade java-helm java-helm --set image.tag=${params.buildnum}'
             }
         }
     }
