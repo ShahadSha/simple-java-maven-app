@@ -8,7 +8,7 @@ pipeline {
         stage("Build Maven") {
             steps {
                 checkout([$class: 'GitSCM', branches: [[name: '*/master']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/ShahadSha/simple-java-maven-app']]])
-                sh "mvn -Dmaven.test.failure.ignore=true clean package"
+                sh "mvn clean install"
             }
         }
 

@@ -1,10 +1,10 @@
-FROM maven:3.8.6-jdk-11
+# FROM maven:3.8.6-jdk-11 as Build
+# WORKDIR /simple-java-maven-app
+# COPY /src ./src
+# COPY /pom.xml /pom.xml
+# RUN mvn clean install
 
-WORKDIR /simple-java-maven-app
-
-COPY src /usr/src/app/src 
-
-COPY pom.xml /tmp/pom.xml
-
-RUN mvn -B -f /tmp/pom.xml -s /usr/share/maven/ref/settings-docker.xml dependency:resolve
-
+FROM openjdk:8u171-jre-alpine
+WORKDIR /My-app
+COPY ./target/my-app-*.jar ./my-app.jar
+CMD ["java", "-jar", "./my-app.jar"]
