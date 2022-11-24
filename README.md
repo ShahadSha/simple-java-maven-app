@@ -1,8 +1,14 @@
-# simple-java-maven-app
 
-This repository is for the
-[Build a Java app with Maven](https://jenkins.io/doc/tutorials/build-a-java-app-with-maven/)
-tutorial in the [Jenkins User Documentation](https://jenkins.io/doc/).
+# Building and Deploying a maven project into Kubernetes
+
+## Pipeline
+- Cloning github repo
+- Sonarqube analysis
+- Quality gate
+- Building docker image with kaniko
+- Triggering another pipeline with build number parameter
+- Deploying springboot application into Kubernetes
+
 
 The repository contains a simple Java application which outputs the string
 "Hello world!" and is accompanied by a couple of unit tests to check that the
